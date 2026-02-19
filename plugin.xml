@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-slm-inappbrowser"
+        version="1.0.0">
+
+    <name>SLM InAppBrowser</name>
+    <description>InAppBrowser con WKWebView/Chrome Custom Tabs — bridge webapp-nativo para SLM Framework</description>
+    <license>MIT</license>
+    <keywords>inappbrowser,webview,browser,bridge,wkwebview</keywords>
+
+    <engines>
+        <engine name="cordova" version=">=8.0.0" />
+        <engine name="cordova-android" version=">=9.0.0" />
+        <engine name="cordova-ios" version=">=6.0.0" />
+    </engines>
+
+    <js-module src="www/SLMInAppBrowser.js" name="SLMInAppBrowser">
+        <clobbers target="cordova.InAppBrowser" />
+    </js-module>
+
+    <!-- iOS -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="SLMInAppBrowser">
+                <param name="ios-package" value="SLMInAppBrowser" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/ios/SLMInAppBrowser.swift" />
+        <source-file src="src/ios/SLMInAppBrowserWebViewController.swift" />
+
+        <framework src="WebKit.framework" />
+        <framework src="SafariServices.framework" />
+
+        <preference name="SWIFTVERSION" default="5.0" />
+    </platform>
+
+    <!-- Android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="SLMInAppBrowser">
+                <param name="android-package" value="com.slm.inappbrowser.SLMInAppBrowser" />
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+
+        <source-file src="src/android/SLMInAppBrowser.java" target-dir="src/com/slm/inappbrowser" />
+        <source-file src="src/android/SLMInAppBrowserWebView.java" target-dir="src/com/slm/inappbrowser" />
+
+        <framework src="androidx.browser:browser:1.7.0" />
+    </platform>
+
+</plugin>

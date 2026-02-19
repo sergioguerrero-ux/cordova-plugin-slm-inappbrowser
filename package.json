@@ -1,0 +1,26 @@
+{
+  "name": "cordova-plugin-slm-inappbrowser",
+  "version": "1.0.0",
+  "description": "InAppBrowser con WKWebView/Chrome Custom Tabs — bridge webapp-nativo para SLM Framework",
+  "cordova": {
+    "id": "cordova-plugin-slm-inappbrowser",
+    "platforms": ["android", "ios"]
+  },
+  "keywords": [
+    "cordova",
+    "inappbrowser",
+    "webview",
+    "browser",
+    "bridge",
+    "wkwebview",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Sergio Guerrero M <sergio.guerrero@slm.cloud>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sergioguerrero-ux/cordova-plugin-slm-inappbrowser.git"
+  }
+}
