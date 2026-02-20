@@ -29,6 +29,12 @@ class SLMInAppBrowserWebViewController: UIViewController, WKNavigationDelegate, 
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = true
 
+        // Evitar que WKWebView agregue insets automaticos por safe area
+        // (esto causa el espacio blanco abajo en iPhones con home indicator)
+        if #available(iOS 11.0, *) {
+            webView.scrollView.contentInsetAdjustmentBehavior = .never
+        }
+
         if #available(iOS 16.4, *) {
             webView.isInspectable = true
         }
