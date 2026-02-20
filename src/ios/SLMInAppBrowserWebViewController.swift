@@ -24,8 +24,8 @@ class SLMInAppBrowserWebViewController: UIViewController, WKNavigationDelegate, 
 
         config.preferences.javaScriptEnabled = true
 
-        webView = WKWebView(frame: .zero, configuration: config)
-        webView.translatesAutoresizingMaskIntoConstraints = false
+        webView = WKWebView(frame: view.bounds, configuration: config)
+        webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = true
 
@@ -35,14 +35,12 @@ class SLMInAppBrowserWebViewController: UIViewController, WKNavigationDelegate, 
 
         view.addSubview(webView)
         view.backgroundColor = .white
+    }
 
-        // Respetar Safe Area para que la WebView no se meta debajo del status bar
-        NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let top = view.safeAreaInsets.top
+        webView.frame = CGRect(x: 0, y: top, width: view.bounds.width, height: view.bounds.height - top)
     }
 
     func loadURL(_ urlString: String) {
